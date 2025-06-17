@@ -1,4 +1,5 @@
-﻿namespace ComarchCwiczenia20250616.App
+﻿
+namespace ComarchCwiczenia20250616.App
 {
     internal class Program
     {
@@ -15,6 +16,7 @@
             Console.WriteLine(" 3. Mnożenie");
             Console.WriteLine(" 4. Dzielenie");
             Console.WriteLine(" 5. Reszta z dzielenia");
+            Console.WriteLine(" 6. Szyfr Cezara");
             Console.Write("Wybierz opcję: ");
 
             string sWybor = Console.ReadLine();
@@ -44,6 +46,12 @@
                     case 5:
                         Console.WriteLine($"Wynik reszty z dzielenia {x} oraz {y} to {x % y}.");
                         break;
+                    case 6:
+                        Console.Write("Podaj tekst do zaszyfrowania.");
+                        string jawnyTekst = Console.ReadLine();
+                        string zaszyfrowanyTekst = SzyfrCezara(jawnyTekst, 3);
+                        Console.WriteLine($"Zaszyfrowany tekst: {zaszyfrowanyTekst}");
+                        break;
                     default:
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Podana wartość wykracza poza menu!");
@@ -57,6 +65,31 @@
                 Console.WriteLine("Podana wartość nie jest liczbą!");
                 Console.ResetColor();
             }
+        }
+
+        private static string SzyfrCezara(string? jawnyTekst, int przesuniecie)
+        {
+            string wynik = "";
+
+            foreach (char znak in jawnyTekst)
+            {
+                if (znak >= 'a' && znak <= 'z')
+                {
+                    char zaszyfrowany = (char)((znak - 'a' + przesuniecie + 26) % 26 + 'a');
+                    wynik += zaszyfrowany;
+                }
+                else if (znak >= 'A' && znak <= 'Z')
+                {
+                    char zaszyfrowany = (char)((znak - 'A' + przesuniecie + 26) % 26 + 'A');
+                    wynik += zaszyfrowany;
+                }
+                else
+                {
+                    wynik += znak;
+                }
+            }
+
+            return wynik;
         }
     }
 }
