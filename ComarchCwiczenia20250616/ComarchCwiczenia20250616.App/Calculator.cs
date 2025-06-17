@@ -19,9 +19,18 @@ internal class Calculator
 
     public float Divide(float x, float y)
     {
+        if (y == 0)
+            throw new DivideByZeroException("Pamiętaj cholero! Nie dziel przez zero!");
         return x / y;
     }
 
+    /// <summary>
+    /// Moduloes the specified x.
+    /// </summary>
+    /// <param name="x">The x.</param>
+    /// <param name="y">The y.</param>
+    /// <returns></returns>
+    /// <exception cref="DivideByZeroException">Gdy y == 0 dostajemy błąd.</exception>
     public int Modulo(int x, int y)
     {
         return x % y;
@@ -62,27 +71,27 @@ internal class Calculator
 
     public string CaesarsCipher(string? plainText, int shift)
     {
-        string result = "";
+        string wynik = "";
 
         foreach (char type in plainText)
         {
             if (type >= 'a' && type <= 'z')
             {
                 char zaszyfrowany = (char)((type - 'a' + shift + 26) % 26 + 'a');
-                result += zaszyfrowany;
+                wynik += zaszyfrowany;
             }
             else if (type >= 'A' && type <= 'Z')
             {
                 char zaszyfrowany = (char)((type - 'A' + shift + 26) % 26 + 'A');
-                result += zaszyfrowany;
+                wynik += zaszyfrowany;
             }
             else
             {
-                result += type;
+                wynik += type;
             }
         }
 
-        return result;
+        return wynik;
     }
 
 }

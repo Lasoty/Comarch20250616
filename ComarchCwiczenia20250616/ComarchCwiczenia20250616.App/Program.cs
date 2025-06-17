@@ -40,11 +40,29 @@
                             break;
                         case 4:
                             GetXY(out x, out y);
-                            Console.WriteLine($"Wynik dzielenia {x} oraz {y} to {calculator.Divide(x, y)}.");
+                            try
+                            {
+                                Console.WriteLine($"Wynik dzielenia {x} oraz {y} to {calculator.Divide(x, y)}.");
+                            }
+                            catch (Exception ex)
+                            {
+                                ShowError(ex.Message);
+                            }
                             break;
                         case 5:
                             GetXY(out x, out y);
-                            Console.WriteLine($"Wynik reszty z dzielenia {x} oraz {y} to {calculator.Modulo(x, y)}.");
+                            try
+                            {
+                                Console.WriteLine($"Wynik reszty z dzielenia {x} oraz {y} to {calculator.Modulo(x, y)}.");
+                            }
+                            catch (DivideByZeroException ex)
+                            {
+                                ShowError("Pamiętaj cholero! Nie dziel przez 0.");
+                            }
+                            catch (Exception ex)
+                            {
+                                ShowError("Przepraszamy za usterki ;-(");
+                            }
                             break;
                         case 6:
                             Console.Write("Podaj tekst do zaszyfrowania: ");
