@@ -8,43 +8,37 @@ namespace ComarchCwiczenia20250616.App
         /// </summary>
         /// 
         /// <param name="args">parametry wejściowe aplikacji</param>
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            Console.WriteLine("Kalkulator v1.0");
-            Console.WriteLine(" 1. Dodawnie");
-            Console.WriteLine(" 2. Odejmowanie");
-            Console.WriteLine(" 3. Mnożenie");
-            Console.WriteLine(" 4. Dzielenie");
-            Console.WriteLine(" 5. Reszta z dzielenia");
-            Console.WriteLine(" 6. Szyfr Cezara");
-            Console.WriteLine(" 7. Sortowanie bąbelkowe");
-            Console.Write("Wybierz opcję: ");
+            ShowMenu();
 
             string sWybor = Console.ReadLine();
             bool czyPoprawnyWybor = int.TryParse(sWybor, out int wybor);
 
             if (czyPoprawnyWybor)
             {
-                Console.Write("Podaj X: ");
-                int x = int.Parse(Console.ReadLine());
-                Console.Write("Podaj Y: ");
-                int y = int.Parse(Console.ReadLine());
+                int x, y;
 
                 switch (wybor)
                 {
                     case 1:
+                        GetXY(out x, out y);
                         Console.WriteLine($"Wynik dodawania {x} oraz {y} to {x + y}.");
                         break;
                     case 2:
+                        GetXY(out x, out y);
                         Console.WriteLine($"Wynik odejmowania {x} oraz {y} to {x - y}.");
                         break;
                     case 3:
+                        GetXY(out x, out y);
                         Console.WriteLine($"Wynik mnożenia {x} oraz {y} to {x * y}.");
                         break;
                     case 4:
+                        GetXY(out x, out y);
                         Console.WriteLine($"Wynik dzielenia {x} oraz {y} to {x / (float)y}.");
                         break;
                     case 5:
+                        GetXY(out x, out y);
                         Console.WriteLine($"Wynik reszty z dzielenia {x} oraz {y} to {x % y}.");
                         break;
                     case 6:
@@ -67,18 +61,42 @@ namespace ComarchCwiczenia20250616.App
 
                         break;
                     default:
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Podana wartość wykracza poza menu!");
-                        Console.ResetColor();
+                        ShowError("Podana wartość wykracza poza menu!");
                         break;
                 }
             }
             else
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Podana wartość nie jest liczbą!");
-                Console.ResetColor();
+                ShowError("Podana wartość nie jest liczbą!");
             }
+        }
+
+        private static void GetXY(out int x, out int y)
+        {
+            Console.Write("Podaj X: ");
+            x = int.Parse(Console.ReadLine());
+            Console.Write("Podaj Y: ");
+            y = int.Parse(Console.ReadLine());
+        }
+
+        private static void ShowMenu()
+        {
+            Console.WriteLine("Kalkulator v1.0");
+            Console.WriteLine(" 1. Dodawnie");
+            Console.WriteLine(" 2. Odejmowanie");
+            Console.WriteLine(" 3. Mnożenie");
+            Console.WriteLine(" 4. Dzielenie");
+            Console.WriteLine(" 5. Reszta z dzielenia");
+            Console.WriteLine(" 6. Szyfr Cezara");
+            Console.WriteLine(" 7. Sortowanie bąbelkowe");
+            Console.Write("Wybierz opcję: ");
+        }
+
+        private static void ShowError(string wiadomosc)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(wiadomosc);
+            Console.ResetColor();
         }
 
         private static void WyswietlTablice(int[] tablica)
