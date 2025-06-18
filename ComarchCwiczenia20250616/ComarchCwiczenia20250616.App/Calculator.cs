@@ -94,4 +94,25 @@ internal class Calculator
         return wynik;
     }
 
+    public int DayCounter(Days day)
+    {
+        int result = 0;
+
+        var currentDay = DateTime.Now.DayOfWeek;
+        result = (int)day - (int)currentDay;
+        return result;
+    }
+
+}
+
+
+public enum Days
+{
+    Monday = 1,
+    Tuesday, 
+    Wednesday, 
+    Thursday, 
+    Friday, 
+    Saturday, 
+    Sunday
 }

@@ -81,7 +81,9 @@
 
                             calculator.BubbleSort(liczby);
                             WyswietlTablice(liczby);
-
+                            break;
+                        case 8:
+                            ZabawyZCar();
                             break;
                         default:
                             ShowError("Podana wartość wykracza poza menu!");
@@ -101,7 +103,7 @@
                 czyKontynuowac = key != ConsoleKey.N;
 
             } while (czyKontynuowac);
-        }
+        }  
 
         private static void GetXY(out int x, out int y)
         {
@@ -141,5 +143,35 @@
             }
             Console.WriteLine();
         }
+
+
+
+
+
+        private static void ZabawyZCar()
+        {
+            VehicleBase vb = new Car();
+            Car c1 = new Car();
+            Truck t1 = new Truck();
+
+            Wypozycz(vb);
+            Wypozycz(c1);
+            Wypozycz(t1);
+
+            Drukuj(c1);
+            Drukuj(t1);
+            //Drukuj(vb);
+        }
+
+        private static void Wypozycz(VehicleBase vehicleBase)
+        {
+            vehicleBase.Wypozycz();
+        }
+
+        public static void Drukuj(ICar car)
+        {
+            Console.WriteLine(car.Marka);
+        }
+
     }
 }
