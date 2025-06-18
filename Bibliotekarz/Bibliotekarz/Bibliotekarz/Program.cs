@@ -26,6 +26,7 @@ namespace Bibliotekarz
             builder.Services.AddRazorComponents()
                 .AddInteractiveWebAssemblyComponents();
 
+            builder.Services.AddControllers();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -45,6 +46,8 @@ namespace Bibliotekarz
             app.UseAntiforgery();
 
             app.MapStaticAssets();
+
+            app.MapControllers();
             app.MapRazorComponents<App>()
                 .AddInteractiveWebAssemblyRenderMode()
                 .AddAdditionalAssemblies(typeof(Client._Imports).Assembly);
